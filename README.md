@@ -4,6 +4,6 @@ Python website change detector
 
 ```
 # Run detector
-python3 
+python3 detector.py
 ```
 
