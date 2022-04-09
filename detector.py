@@ -3,6 +3,7 @@ import hashlib
 import pickler
 from targets import targets
 from slugify import slugify
+from mailer import Mailer
 
 
 for target in targets:
@@ -21,4 +22,6 @@ for target in targets:
         print("Same!")
     else:
         print("Change detected!")
+        m = Mailer()
+        m.send_email("Change detected!", "headers", url)
         pickler.dump(pickle_file, hash)
