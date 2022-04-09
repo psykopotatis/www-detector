@@ -5,4 +5,5 @@ def handle(r):
     print("pipeline_handler")
     soup = BeautifulSoup(r.text, 'html.parser')
     pipeline = soup.find(id="pipeline")
-    return pipeline
+    pretty_html = pipeline.prettify()
+    return pretty_html
