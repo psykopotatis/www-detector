@@ -16,12 +16,17 @@ for target in targets:
     result = handler.handle(r)
 
     hash = hashlib.md5(result.encode('utf-8')).hexdigest()
-    previous_hash = pickler.load(pickle_file, "asdf")
+    previous_hash = pickler.load(pickle_file, None)
 
-    if previous_hash == hash:
+    if previous_hash is None:
+        print("First run! Saving hash.")
+        pickler.dump(pickle_file, hash)
+    elif previous_hash == hash:
         print("Same!")
     else:
         print("Change detected!")
         m = Mailer()
         m.send_email("Change detected!", "headers", url)
         pickler.dump(pickle_file, hash)
+
+    print("")
